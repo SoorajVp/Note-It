@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.get('/update', controller.updateProfile)
 
+
 export default router;

@@ -3,7 +3,10 @@ import controller from '../controllers/noteController.js';
 
 const router = express.Router();
 
-router.get('/create', controller.createNote);
+router.post('/create', controller.createNote);
 
+router.patch('/update/:id', controller.updateNote)
+
+router.delete('/delete/:id', controller.deleteNote)
 
 export default router;
