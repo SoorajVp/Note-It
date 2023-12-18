@@ -3,13 +3,21 @@ import CustomError from "../utils/CustomError.js";
 
 export default {
 
+    getUserNotes: async(req, res, next ) => {
+        try {
+            const notes = await Note.findAll({ where: {userId: req.userId}});
+            return res.status(201).json({ message: "Notes fetched successfully", data: notes });
+        } catch (error) {
+            next(error)
+        }
+    },
+
     createNote: async(req, res, next ) => {
         try {
             const { head, text } = req.body;
             const noteData = {
-                head,
-                text,
-                userId: 31,
+                head, text,
+                userId: req.userId,
             };
             const newNote = await Note.create(noteData);
             return res.status(201).json({ message: "Note created successfully", data: newNote });
@@ -36,7 +44,6 @@ export default {
         try {
             await Note.destroy({ where: { id: req.params.id } })
             return res.status(201).json({ message: "Note deleted successfully" });
-            
         } catch (error) {
             next(error)
         }
