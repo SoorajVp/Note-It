@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: sans-serif;
+}
+
 .button {
     background-color: #5c33bd;
     border: none;
@@ -15,9 +19,25 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.5s;
+    transition-duration: 500ms;
 }
 
 .button:hover {
     background-color: #7848e8;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px #7848e8, 0 2px 3px -1px #5c33bd;
+    border-radius: 13px;
+    transition-duration: 500ms;
+    border: 1px solid #fff;
+}
+
+.card:hover {
+    border: 1px solid #5c33bd;
 }

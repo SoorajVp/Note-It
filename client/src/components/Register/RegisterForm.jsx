@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom'
 const RegisterForm = () => {
     return (
         <form>
-            {/* <div className="mb-6">
-                <h3 className="text-3xl text-center font-extrabold">Sign up</h3>
-            </div> */}
 
             <div className='mt-4'>
                 <label className="text-sm mb-2 block">User name</label>
