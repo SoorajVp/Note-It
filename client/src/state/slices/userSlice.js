@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { submitLogin, submitRegister } from "../../services/apiCalls/auth";
 
 const initialState = {
     userData: null,
@@ -9,24 +10,39 @@ const initialState = {
 const userSlice = createSlice({
     name: "user",
     initialState,
+
     reducers: {
-        setLoggedin: (state, action) => {
-            state.userData = action.payload.userData;
-            state.token = action.payload.token;
-            state.isLoggedIn = true
-        },
-
-        updateUser: (state, action) => {
-            state.userData = action.payload.userData;
-        },
-
         setLogout: (state) => {
+            localStorage.removeItem('BytePadToken');
             state.isLoggedIn = false;
             state.userData = null;
             state.token = null;
         }
+    },
 
-    }
+    extraReducers: (builder) => {
+        builder
+            .addCase(submitLogin.fulfilled, (state, action) => {
+                localStorage.setItem("BytePadToken", action.payload?.token)
+                state.userData = action.payload?.data;
+                state.token = action.payload?.token;
+                state.isLoggedIn = true
+            })
+            .addCase(submitLogin.rejected, (state) => {
+                console.log("Login authentication failed")
+            })
+
+            .addCase(submitRegister.fulfilled, (state, action) => {
+                localStorage.setItem("BytePadToken", action.payload?.token)
+                state.userData = action.payload?.data;
+                state.token = action.payload?.token;
+                state.isLoggedIn = true
+            })
+            .addCase(submitRegister.rejected, (state) => {
+                console.log("Register authentication failed")
+            })
+
+    }   
 })
 
 

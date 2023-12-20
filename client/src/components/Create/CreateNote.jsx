@@ -1,22 +1,47 @@
+import { Link, useNavigate } from 'react-router-dom'
+import { createNote } from '../../services/apiCalls/note'
+import { useState } from 'react'
+
 
 const CreateNote = () => {
+    const [head, setHead] = useState('');
+    const [text, setText] = useState('');
+    const navigate = useNavigate()
+
+    const submitNote = async () => {
+        console.log('submit')
+        const response = await createNote({ head, text })
+        console.log(response)
+        navigate('/')
+    }
+
+    const clearButton = () => {
+        setHead('');
+        setText('');
+    }
+
+
     return (
+
         <div className="pt-3 px-3 md:px-16 lg:px-36 bg-purple-200 min-h-screen">
+
             <div className="flex justify-between mb-2">
-                <div>
+                <Link to='/'>
                     <button className="secondary-button">Back</button>
-                </div>
+                </Link>
                 <div className="space-x-1">
-                    <button className="secondary-button">Clear</button>
-                    <button className="primary-button">Save</button>
+                    <button className="secondary-button" onClick={clearButton}>Clear</button>
+                    <button className="primary-button disabled:opacity-50 disabled:pointer-events-none" disabled={true} onClick={submitNote}>Save</button>
                 </div>
             </div>
             <form className="mx-auto">
                 <div className="">
-                    <input type="text" id="head" className="bg-gray-50 border-gray-300 text-gray-700 text-lg rounded-t-md block w-full p-2.5 focus:outline-none" placeholder='Title' />
+                    <input type="text" onChange={(e)=> setHead(e.target.value)} value={head} id="head" 
+                    className="bg-gray-50 border-gray-300 text-gray-700 text-base rounded-t-md block w-full p-2.5 focus:outline-none" placeholder='Title' />
                 </div>
                 <div>
-                    <textarea id="text" rows="24" className="block p-2.5 w-full text-sm text-gray-700 bg-gray-50 rounded-b-md focus:outline-none" placeholder="Leave a comment..."></textarea>
+                    <textarea id="text" onChange={(e) => setText(e.target.value)} value={text} rows="24" 
+                    className="block p-2.5 w-full text-sm text-gray-700 bg-gray-50 rounded-b-md focus:outline-none" placeholder="Your notes..."></textarea>
                 </div>
             </form>
 
