@@ -41,7 +41,7 @@ const RegisterForm = () => {
                 </a>
             </div>
             <div className="mt-8">
-                <button type="button" className="button w-full">
+                <button type="button" className="primary-button w-full">
                     Create Account
                 </button>
             </div>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import addIcon from '../../assets/add-icon.svg'
 
-const CreateNote = () => {
+const CreateButton = () => {
     return (
         <Link to='/create'>
             <div className=' border-2 border-secondary hover:bg-white transition duration-500 rounded-lg w-full py-4 p-2'>
@@ -14,4 +14,4 @@ const CreateNote = () => {
     )
 }
 
-export default CreateNote
+export default CreateButton

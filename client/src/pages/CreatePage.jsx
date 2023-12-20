@@ -1,8 +1,8 @@
-import React from 'react'
+import CreateNote from '../components/Create/CreateNote'
 
 const CreatePage = () => {
   return (
-    <div>CreatePage</div>
+    <div><CreateNote /></div>
   )
 }
 

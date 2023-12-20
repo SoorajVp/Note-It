@@ -6,7 +6,6 @@ export default {
 
     register: async (req, res, next) => {
         try {
-            console.log(req.body);
             let { name, mobile, password } = req.body;
 
             const isNameExist = await User.findOne({ where: { name: name } });
@@ -32,6 +31,7 @@ export default {
         try {
             const { name, password } = req.body
             const user = await User.findOne({ where: { name } });
+
             if (!user) {
                 throw new CustomError('Invalid username or password', 400);
             }
@@ -40,7 +40,6 @@ export default {
                 throw new CustomError('Invalid username or password', 400);
             }
             const token = generateToken(user?.id);
-            console.log(user)
             res.json({ message: "Loggedin successfully", data: user, status: true, token })
         } catch (error) {
             next(error)

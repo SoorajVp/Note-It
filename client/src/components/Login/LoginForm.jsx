@@ -1,7 +1,14 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { authRequest } from '../../services/auth'
 
 const LoginForm = () => {
+
+    const submitLogin = async() => {
+        const response = await authRequest.login({ name: "Sooraj VP", password: "password"})
+        console.log(" -_ - - - - - - - - - ",response)
+        
+        
+    }
     
   return (
       <form>
@@ -31,7 +38,7 @@ const LoginForm = () => {
               </a>
           </div>
           <div className="mt-10">
-              <button type="button" className="button w-full">
+              <button type="button" className="primary-button w-full" onClick={submitLogin}>
                   Log in
               </button>
           </div>
