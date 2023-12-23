@@ -12,6 +12,15 @@ export default {
         }
     },
 
+    getSingleNote: async (req, res, next) => {
+        try {
+            const note = await Note.findByPk(req.params.id);
+            return res.status(201).json({ message: "Notes fetched successfully", data: note });
+        } catch (error) {
+            next(error)
+        }
+    },
+
     createNote: async(req, res, next ) => {
         try {
             const { head, text } = req.body;

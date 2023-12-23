@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { createNote } from '../../services/apiCalls/note'
+import { createNewNote } from '../../services/apiCalls/note'
 import { useState } from 'react'
 
 
@@ -12,7 +12,7 @@ const CreateNote = () => {
 
     const submitNote = async () => {
         console.log('submit')
-        const response = await createNote({ head, text })
+        const response = await createNewNote({ head, text })
         console.log(response)
         navigate('/')
     }

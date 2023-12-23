@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserNotes } from "../../services/apiCalls/note";
 import EmptyNote from "./EmptyNote";
+import NoteCard from "./NoteCard";
 
 const NoteList = () => {
     const [notes, setNotes] = useState([])
@@ -8,16 +9,12 @@ const NoteList = () => {
     useEffect(() => {
         const fetchNotes = async() => {
             const response = await getUserNotes();
+            console.log(response.data)
             setNotes(response?.data?.reverse())
         }
         fetchNotes()
     }, [])
 
-    const maxCharacters = 300;
-
-    const truncateText = (text) => {
-        return text.length > maxCharacters ? text.slice(0, maxCharacters) + '...' : text;
-    };
 
     if( notes.length == 0 ) return <EmptyNote />
 
@@ -26,17 +23,7 @@ const NoteList = () => {
 
             {
                 notes?.map((item) => (
-                    <div className='card w-full p-3 lg:p-4'>
-                        <div>
-
-                        <div className='flex justify-between'>
-                            <h2 className='font-medium text-xs text-gray-800 sm:text-sm py-2 truncate w-56'>{item?.head}</h2>
-                            <h2 className='font-medium text-xs text-red-600 sm:text-sm py-2 cursor-pointer'>Delete</h2>
-                        </div>
-                        <p className='text-2xs sm:text-xs text-gray-600 '>{truncateText(item?.text)}</p>
-                        </div>
-                        <p className='pt-1 text-right text-2xs text-gray-500'>{item?.updatedAt}</p>
-                    </div>
+                    <NoteCard {...item} key={item?.id} />
                 ))
             }
 

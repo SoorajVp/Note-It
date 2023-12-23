@@ -1,4 +1,4 @@
-import CreateNote from '../components/Create/CreateNote'
+import CreateNote from '../components/Note/CreateNote'
 
 const CreatePage = () => {
 
