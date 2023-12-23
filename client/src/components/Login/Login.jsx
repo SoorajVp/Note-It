@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 const Login = () => {
     return (
         <div className="font-[sans-serif] text-[#333]">
-            <div className="grid lg:grid-cols-2 gap-4 bg-gradient-to-r from-secondary to-primary sm:p-8 p-4 h-[320px]">
+            <div className="grid lg:grid-cols-2 gap-4 bg-gradient-to-r from-secondary to-violet-800 sm:p-8 p-4 h-[320px]">
                 <div>
                     <Logo />
                     <div className="max-w-lg mt-16 px-6 max-lg:hidden">

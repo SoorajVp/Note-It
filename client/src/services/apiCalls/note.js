@@ -8,3 +8,12 @@ export const createNote = async(payload) => {
         return error?.response?.data
     }
 }
+
+export const getUserNotes = async() => {
+    try {
+        const response = await axiosInstance.get('/note/')
+        return response.data
+    } catch (error) {
+        return error?.response?.data
+    }
+}

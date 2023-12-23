@@ -22,6 +22,7 @@ export default {
             const newNote = await Note.create(noteData);
             return res.status(201).json({ message: "Note created successfully", data: newNote });
         } catch (error) {
+            console.log(error);
             next(error);
         }
     },

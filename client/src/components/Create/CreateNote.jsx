@@ -8,6 +8,8 @@ const CreateNote = () => {
     const [text, setText] = useState('');
     const navigate = useNavigate()
 
+    const status = ( head && text ) ? false : true 
+
     const submitNote = async () => {
         console.log('submit')
         const response = await createNote({ head, text })
@@ -23,7 +25,7 @@ const CreateNote = () => {
 
     return (
 
-        <div className="pt-3 px-3 md:px-16 lg:px-36 bg-purple-200 min-h-screen">
+        <div>
 
             <div className="flex justify-between mb-2">
                 <Link to='/'>
@@ -31,12 +33,12 @@ const CreateNote = () => {
                 </Link>
                 <div className="space-x-1">
                     <button className="secondary-button" onClick={clearButton}>Clear</button>
-                    <button className="primary-button disabled:opacity-50 disabled:pointer-events-none" disabled={true} onClick={submitNote}>Save</button>
+                    <button className="primary-button disabled:opacity-50 disabled:pointer-events-none" disabled={status} onClick={submitNote}>Save</button>
                 </div>
             </div>
             <form className="mx-auto">
                 <div className="">
-                    <input type="text" onChange={(e)=> setHead(e.target.value)} value={head} id="head" 
+                    <input type="text" onChange={(e)=> setHead(e.target.value)} value={head} id="head" autoComplete='off'
                     className="bg-gray-50 border-gray-300 text-gray-700 text-base rounded-t-md block w-full p-2.5 focus:outline-none" placeholder='Title' />
                 </div>
                 <div>
