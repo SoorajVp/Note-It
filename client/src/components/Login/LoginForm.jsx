@@ -56,9 +56,9 @@ const LoginForm = () => {
 
             </div>
             <div className="mt-4 text-right">
-                <a href="jajvascript:void(0);" className="text-primary text-sm font-semibold hover:underline">
+                <p className="text-primary text-sm font-semibold hover:underline">
                     Forgot your password?
-                </a>
+                </p>
             </div>
             <div className="mt-10">
                 <button type="submit" className="primary-button w-full">

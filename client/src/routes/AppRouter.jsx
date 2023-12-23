@@ -7,6 +7,7 @@ import PrivateRoute from './Layout/Private'
 import NotFound from '../components/Error/NotFound'
 import Layout from './Layout/Layout'
 import NotePage from '../pages/NotePage'
+import ProfilePage from '../pages/ProfilePage'
 
 const AppRouter = () => {
 
@@ -16,11 +17,11 @@ const AppRouter = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* Note nexted routes */}
       <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path='create' element={<CreatePage />} />
         <Route path='note/:id' element={<NotePage />} />
+        <Route path='profile' element={<ProfilePage />} />
       </Route>
 
       {/* Error Route */}

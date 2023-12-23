@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getSingleNote, updateNote } from '../../services/apiCalls/note'
-import { useEffect, useState } from 'react'
 
 const SingleNote = () => {
     const [note, setNote] = useState(null)
@@ -12,24 +12,18 @@ const SingleNote = () => {
     useEffect(() => {
         const fetchSingleNote = async () => {
             const response = await getSingleNote(id)
-            console.log("single note", response)
-            setNote(response.data)
+            setNote(response?.data)
             setHead(response?.data?.head);
             setText(response?.data?.text);
 
         }
         fetchSingleNote()
     }, [])
-    console.log("head", head)
 
     const status = !(head && text) || (note?.head === head && note?.text === text);
 
-
-
     const submitNote = async () => {
-        console.log('submit')
-        const response = await updateNote({ id, head, text })
-        console.log(response)
+        await updateNote({ id, head, text })
         navigate('/')
     }
 
@@ -41,7 +35,6 @@ const SingleNote = () => {
     return (
 
         <div>
-
             <div className="flex justify-between mb-2">
                 <Link to='/'>
                     <button className="secondary-button">Back</button>
@@ -61,7 +54,6 @@ const SingleNote = () => {
                         className="block p-2.5 w-full text-sm text-gray-700 bg-gray-50 rounded-b-md focus:outline-none" placeholder="Your notes..."></textarea>
                 </div>
             </form>
-
         </div>
     )
 }

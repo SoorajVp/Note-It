@@ -50,7 +50,7 @@ const RegisterForm = () => {
                 <label className="text-sm mb-2 block">Mobile</label>
                 <div className="relative flex items-center">
                     <input name="mobile" type="number" value={values.mobile} onChange={handleChange} onBlur={handleBlur}
-                        className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-primary" placeholder="Enter user name" />
+                        className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-primary" placeholder="Enter mobile number" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 24 24">
                         <path d="M22 3H2a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM3 5h18v10H3V5zm0 12v-2h18v2H3z" />
                     </svg>

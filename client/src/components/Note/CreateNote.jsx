@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createNewNote } from '../../services/apiCalls/note'
-import { useState } from 'react'
 
 
 const CreateNote = () => {
@@ -11,9 +11,7 @@ const CreateNote = () => {
     const status = ( head && text ) ? false : true 
 
     const submitNote = async () => {
-        console.log('submit')
-        const response = await createNewNote({ head, text })
-        console.log(response)
+        await createNewNote({ head, text })
         navigate('/')
     }
 
@@ -26,7 +24,6 @@ const CreateNote = () => {
     return (
 
         <div>
-
             <div className="flex justify-between mb-2">
                 <Link to='/'>
                     <button className="secondary-button">Back</button>
@@ -46,7 +43,6 @@ const CreateNote = () => {
                     className="block p-2.5 w-full text-sm text-gray-700 bg-gray-50 rounded-b-md focus:outline-none" placeholder="Your notes..."></textarea>
                 </div>
             </form>
-
         </div>
     )
 }

@@ -15,6 +15,9 @@ export default {
     getSingleNote: async (req, res, next) => {
         try {
             const note = await Note.findByPk(req.params.id);
+            if (!note) {
+                throw new CustomError("Note item not found", 404);
+            }
             return res.status(201).json({ message: "Notes fetched successfully", data: note });
         } catch (error) {
             next(error)
