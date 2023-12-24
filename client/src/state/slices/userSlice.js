@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { submitLogin, submitRegister } from "../../services/apiCalls/auth";
+import { updateUserData } from "../../services/apiCalls/user";
 
 const initialState = {
     userData: null,
@@ -42,9 +43,16 @@ const userSlice = createSlice({
                 console.log("Register authentication failed")
             })
 
+            .addCase(updateUserData.fulfilled, (state, action) => {
+                state.userData = action.payload?.data;
+            })
+            .addCase(updateUserData.rejected, (state, action) =>{
+                console.log("User updation failed")
+            })
+
     }   
 })
 
 
-export const { updateUser, setLoggedin, setLogout } = userSlice.actions
+export const { setLogout } = userSlice.actions
 export default userSlice.reducer;

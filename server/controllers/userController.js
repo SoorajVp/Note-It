@@ -15,8 +15,19 @@ export default {
         }
     },
 
-    updateProfile: (req, res) => {
-        res.send("update profile...")
+    updateProfile: async(req, res, next) => {
+        try {
+            const { name, mobile } = req.body
+            const user = await User.findByPk(req.userId)
+            if (!user) {
+                throw new CustomError("User not found", 404);
+            }
+            const updatedUser = await user.update({ name, mobile })
+            return res.status(201).json({ message: "User updated successfully", data: updatedUser });
+        } catch (error) {
+            console.error(error)
+            next(error);
+        }
     }
     
 }

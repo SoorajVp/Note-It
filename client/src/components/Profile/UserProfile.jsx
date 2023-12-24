@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
 import userIcon from '../../assets/user.png';
+import LogoutUser from '../Modals/LogoutUser';
 import UserForm from './UserForm';
-import { getUserData } from '../../services/apiCalls/user';
 
 const UserProfile = () => {
     
-
     return (
         <div>
             <div className='text-center mb-10'>
@@ -16,6 +14,7 @@ const UserProfile = () => {
                     <div className='flex-col text-center'>
                         <img src={userIcon} alt="User" className='w-32 h-32' />
                         <p className='py-4 text-primary hover:text-secondary text-sm font-semibold'>Change password</p>
+                        <LogoutUser />
                     </div>
                 </div>
 

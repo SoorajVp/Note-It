@@ -30,7 +30,6 @@ export const submitRegister = createAsyncThunk(
             console.log(error?.response?.data)
             toast.error(error?.response?.data?.message)
             throw error?.response?.data;
-            // return error?.response?.data
         }
     }
 )

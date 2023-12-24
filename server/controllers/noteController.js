@@ -42,7 +42,7 @@ export default {
     updateNote: async(req, res, next) => {
         try {
             const { head, text } = req.body
-            const prevNote = await Note.findOne({ where: { id: req.params.id } })
+            const prevNote = await Note.findByPk(req.params.id)
             if (!prevNote) {
                 throw new CustomError("Note item not found", 404);
             }

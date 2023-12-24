@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', verifyUser, controller.getUserData)
 
-router.get('/update', verifyUser, controller.updateProfile)
+router.post('/update', verifyUser, controller.updateProfile)
 
 
 export default router;
