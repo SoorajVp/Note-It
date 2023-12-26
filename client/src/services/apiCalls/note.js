@@ -1,7 +1,7 @@
 import axiosInstance from "../axios"
 import toast from "react-hot-toast"
 
-export const createNewNote = async(payload) => {
+export const createNewNote = async (payload) => {
     try {
         const response = await axiosInstance.post('/note/create', payload)
         toast.success(response?.data?.message)
@@ -35,6 +35,17 @@ export const getSingleNote = async (noteId) => {
 export const updateNote = async (payload) => {
     try {
         const response = await axiosInstance.post(`/note/update/${payload?.id}`, payload)
+        toast.success(response?.data?.message)
+        return response.data
+    } catch (error) {
+        toast.error(error?.response?.data?.message)
+        throw error?.response?.data
+    }
+}
+
+export const deleteNote = async (noteId) => {
+    try {
+        const response = await axiosInstance.delete(`/note/delete/${noteId}`);
         toast.success(response?.data?.message)
         return response.data
     } catch (error) {

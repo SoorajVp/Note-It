@@ -1,9 +1,12 @@
-import { useState } from 'react'
-import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux'
+import { deleteNote } from '../../services/apiCalls/note';
+import { setRefetch } from '../../state/slices/userSlice';
 import CustomModal from './Modal';
+import { useState } from 'react';
 
-const DeleteNote = () => {
+const DeleteNote = ({noteId}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const dispatch = useDispatch()
 
     const openModal = (event) => {
         event.preventDefault();
@@ -14,8 +17,9 @@ const DeleteNote = () => {
         setModalIsOpen(false);
     };
 
-    const handleDelete = () => {
-        toast.success("Note deleted successfully")
+    const handleDelete = async() => {
+        await deleteNote(noteId)
+        dispatch(setRefetch())
         closeModal()
     }
 

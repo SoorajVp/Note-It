@@ -3,6 +3,7 @@ import { submitLogin, submitRegister } from "../../services/apiCalls/auth";
 import { updateUserData } from "../../services/apiCalls/user";
 
 const initialState = {
+    actions : 0,
     userData: null,
     token: null,
     isLoggedIn: false,
@@ -13,6 +14,11 @@ const userSlice = createSlice({
     initialState,
 
     reducers: {
+
+        setRefetch: (state) => {
+            state.actions ++;
+        },
+
         setLogout: (state) => {
             localStorage.removeItem('BytePadToken');
             state.isLoggedIn = false;
@@ -46,7 +52,7 @@ const userSlice = createSlice({
             .addCase(updateUserData.fulfilled, (state, action) => {
                 state.userData = action.payload?.data;
             })
-            .addCase(updateUserData.rejected, (state, action) =>{
+            .addCase(updateUserData.rejected, (state) =>{
                 console.log("User updation failed")
             })
 
@@ -54,5 +60,5 @@ const userSlice = createSlice({
 })
 
 
-export const { setLogout } = userSlice.actions
+export const { setLogout, setRefetch } = userSlice.actions
 export default userSlice.reducer;
