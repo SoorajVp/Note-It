@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getSingleNote, updateNote } from '../../services/apiCalls/note'
+import { useDispatch } from 'react-redux'
+import { setLoading } from '../../state/slices/userSlice'
 
 const SingleNote = () => {
     const [note, setNote] = useState(null)
     const [head, setHead] = useState('');
     const [text, setText] = useState('');
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { id } = useParams()
 
     useEffect(() => {
@@ -22,7 +25,9 @@ const SingleNote = () => {
     const status = !(head && text) || (note?.head === head && note?.text === text);
 
     const submitNote = async () => {
+        dispatch(setLoading(true))
         await updateNote({ id, head, text })
+        dispatch(setLoading(false))
         navigate('/')
     }
 

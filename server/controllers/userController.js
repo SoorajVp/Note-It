@@ -22,6 +22,17 @@ export default {
             if (!user) {
                 throw new CustomError("User not found", 404);
             }
+            const isNameExist = await User.findOne({ where: { name: name } });
+            if (isNameExist && isNameExist.name != user.name) {
+                throw new CustomError('Username is already registered', 400);
+            }
+            
+            const isMobileExist = await User.findOne({ where: { mobile: mobile } });
+            console.log("user by pk - - - -", user)
+            console.log("user by mobile - - - -", isMobileExist)
+            if ( isMobileExist && isMobileExist?.mobile != user.mobile) {
+                throw new CustomError('Mobile is already registered', 400);
+            }
             const updatedUser = await user.update({ name, mobile })
             return res.status(201).json({ message: "User updated successfully", data: updatedUser });
         } catch (error) {

@@ -1,17 +1,22 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createNewNote } from '../../services/apiCalls/note'
+import { useDispatch } from 'react-redux';
+import { setLoading } from '../../state/slices/userSlice';
 
 
 const CreateNote = () => {
     const [head, setHead] = useState('');
     const [text, setText] = useState('');
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const status = ( head && text ) ? false : true 
 
     const submitNote = async () => {
+        dispatch(setLoading(true))
         await createNewNote({ head, text })
+        dispatch(setLoading(false))
         navigate('/')
     }
 

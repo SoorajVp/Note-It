@@ -3,10 +3,11 @@ import { submitLogin, submitRegister } from "../../services/apiCalls/auth";
 import { updateUserData } from "../../services/apiCalls/user";
 
 const initialState = {
-    actions : 0,
+    actions: 0,
     userData: null,
     token: null,
     isLoggedIn: false,
+    isLoading: false,
 }
 
 const userSlice = createSlice({
@@ -15,8 +16,13 @@ const userSlice = createSlice({
 
     reducers: {
 
+        setLoading: (state, action) => {
+            state.isLoading = action.payload
+        },
+
         setRefetch: (state) => {
-            state.actions ++;
+            state.actions++;
+            state.isLoading = false
         },
 
         setLogout: (state) => {
@@ -29,36 +35,52 @@ const userSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
+            // Log in function
+            .addCase(submitLogin.pending, (state) => {
+                state.isLoading = true
+            })
             .addCase(submitLogin.fulfilled, (state, action) => {
                 localStorage.setItem("BytePadToken", action.payload?.token)
                 state.userData = action.payload?.data;
                 state.token = action.payload?.token;
                 state.isLoggedIn = true
+                state.isLoading = false
             })
             .addCase(submitLogin.rejected, (state) => {
-                console.log("Login authentication failed")
+                state.isLoading = false
             })
 
+            // Register in function
+            .addCase(submitRegister.pending, (state) => {
+                state.isLoading = true
+            })
             .addCase(submitRegister.fulfilled, (state, action) => {
                 localStorage.setItem("BytePadToken", action.payload?.token)
                 state.userData = action.payload?.data;
                 state.token = action.payload?.token;
                 state.isLoggedIn = true
+                state.isLoading = false
             })
             .addCase(submitRegister.rejected, (state) => {
-                console.log("Register authentication failed")
+                state.isLoading = false
             })
 
+            // Update user function
+            .addCase(updateUserData.pending, (state) => {
+                state.isLoading = true
+            })
             .addCase(updateUserData.fulfilled, (state, action) => {
                 state.userData = action.payload?.data;
+                state.isLoading = false
+
             })
-            .addCase(updateUserData.rejected, (state) =>{
-                console.log("User updation failed")
+            .addCase(updateUserData.rejected, (state) => {
+                state.isLoading = false
             })
 
-    }   
+    }
 })
 
 
-export const { setLogout, setRefetch } = userSlice.actions
+export const { setLogout, setRefetch, setLoading } = userSlice.actions
 export default userSlice.reducer;

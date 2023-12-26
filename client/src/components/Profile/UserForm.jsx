@@ -21,20 +21,25 @@ const UserForm = () => {
         mobile: Yup.string().matches(mobileRegExp, 'Mobile number is not valid').min(10, 'Mobile number is not valid').max(10, 'Mobile number is not valid').required("Please enter your mobile number"),
     })
 
+    
     let { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: updateSchema,
         onSubmit: (values) => {
             dispatch(updateUserData(values))
             setEditable(true)
+            values.name = userData?.name
+            values.mobile = userData?.mobile
         }
     })
-
+    
     useEffect(() => {
         values.name = userData?.name
         values.mobile = userData?.mobile
     }, [userData])
-
+    
+    let submitStatus = (values.name !== userData?.name || values.mobile != userData?.mobile) ? true : false
+    
     const ChangeEditable = () => {
 
         setEditable(!isEditable)
@@ -42,7 +47,6 @@ const UserForm = () => {
         values.mobile = userData?.mobile
     }
 
-    const submitStatus = (values.name !== userData?.name || values.mobile != userData?.mobile) ? true : false
 
     return (
         <form onSubmit={handleSubmit}>

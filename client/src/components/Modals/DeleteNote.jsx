@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { deleteNote } from '../../services/apiCalls/note';
-import { setRefetch } from '../../state/slices/userSlice';
+import { setLoading, setRefetch } from '../../state/slices/userSlice';
 import CustomModal from './Modal';
 import { useState } from 'react';
 
@@ -18,6 +18,7 @@ const DeleteNote = ({noteId}) => {
     };
 
     const handleDelete = async() => {
+        dispatch(setLoading(true))
         await deleteNote(noteId)
         dispatch(setRefetch())
         closeModal()
