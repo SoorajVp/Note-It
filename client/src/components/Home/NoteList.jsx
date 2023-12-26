@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { getUserNotes } from "../../services/apiCalls/note";
 import EmptyNote from "./EmptyNote";
 import NoteCard from "./NoteCard";
-import Shimmer from "../Elements/Shimmer";
+import Loading from "../Elements/Shimmer";
 
 const NoteList = () => {
     const [notes, setNotes] = useState(null)
@@ -22,7 +22,7 @@ const NoteList = () => {
 
 
     if( notes?.length == 0 ) return <EmptyNote />
-    if( loading ) return <Shimmer />
+    if (loading) return <Loading />
 
     return (
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-3'>

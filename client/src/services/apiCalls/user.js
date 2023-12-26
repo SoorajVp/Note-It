@@ -16,7 +16,6 @@ export const updateUserData = createAsyncThunk(
     'users/updateUserData', async (payload) => {
         try {
             const response = await axiosInstance.post('/user/update', payload)
-            console.log(response)
             toast.success(response?.data?.message)
             return response?.data
         } catch (error) {

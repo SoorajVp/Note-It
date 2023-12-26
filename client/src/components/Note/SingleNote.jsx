@@ -15,7 +15,6 @@ const SingleNote = () => {
             setNote(response?.data)
             setHead(response?.data?.head);
             setText(response?.data?.text);
-
         }
         fetchSingleNote()
     }, [])

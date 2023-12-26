@@ -7,7 +7,6 @@ export const submitLogin = createAsyncThunk(
     'users/submitLogin', async (payload) => {
         try {
             const response = await axiosInstance.post('/auth/login', payload)
-            console.log(response.data)
             toast.success(response?.data?.message)
             return response.data
         } catch (error) {
@@ -23,7 +22,6 @@ export const submitRegister = createAsyncThunk(
     'users/submitRegister', async( payload ) => {
         try {
             const response = await axiosInstance.post('/auth/register', payload)
-            console.log(response.data)
             toast.success(response?.data?.message)
             return response.data
         } catch (error) {

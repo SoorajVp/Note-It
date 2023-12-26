@@ -22,7 +22,6 @@ const LoginForm = () => {
         initialValues,
         validationSchema: registerSchema,
         onSubmit: (values, action) => {
-            console.log("RegisterForm", values);
             dispatch(submitLogin(values))
             action.resetForm()
         }

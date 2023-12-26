@@ -1,14 +1,15 @@
-import React from 'react'
-
-const Shimmer = () => {
+const Loading = () => {
   return (
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-3'>
-          <div className='card w-full p-3 h-40 lg:p-4'></div>
-          <div className='card w-full p-3 h-40 lg:p-4'></div>
-          <div className='card w-full p-3 h-40 lg:p-4'></div>
-          <div className='card w-full p-3 h-40 lg:p-4'></div>
+    <div className={`fixed inset-0 z-50 flex justify-center items-center bg-white bg-opacity-50`}>
+      <div className="flex justify-center items-center h-full">
+        <img
+          className="h-16 w-16 fixed "
+          src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
+          alt="Loading"
+        />
       </div>
+    </div>
   )
 }
 
-export default Shimmer
+export default Loading

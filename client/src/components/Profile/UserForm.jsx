@@ -7,8 +7,7 @@ import { updateUserData } from '../../services/apiCalls/user';
 const UserForm = () => {
     const { userData } = useSelector((store) => store.user)
 
-    const [editName, setEditName] = useState(true)
-    const [editMobile, setEditMobile] = useState(true)
+    const [isEditable, setEditable] = useState(true)
     const dispatch = useDispatch()
 
     const initialValues = {
@@ -22,13 +21,12 @@ const UserForm = () => {
         mobile: Yup.string().matches(mobileRegExp, 'Mobile number is not valid').min(10, 'Mobile number is not valid').max(10, 'Mobile number is not valid').required("Please enter your mobile number"),
     })
 
-    const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
+    let { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: updateSchema,
         onSubmit: (values) => {
             dispatch(updateUserData(values))
-            setEditName(true)
-            setEditMobile(true)
+            setEditable(true)
         }
     })
 
@@ -37,13 +35,10 @@ const UserForm = () => {
         values.mobile = userData?.mobile
     }, [userData])
 
-    const ChangeEditName = () => {
-        setEditName(!editName)
-        values.name = userData?.name
-    }
+    const ChangeEditable = () => {
 
-    const ChangeEditMobile = () => {
-        setEditMobile(!editMobile)
+        setEditable(!isEditable)
+        values.name = userData?.name
         values.mobile = userData?.mobile
     }
 
@@ -53,11 +48,12 @@ const UserForm = () => {
         <form onSubmit={handleSubmit}>
             <div className=''>
                 <div className='flex justify-between'>
-                    <label className="text-sm block text-gray-600">User name</label>
-                    <p className='text-sm block text-primary font-semibold cursor-pointer' onClick={ChangeEditName}>Edit</p>
+                    <h2 className='mb-5 font-semibold text-gray-600'>User Informations</h2>
+                    <p className='text-sm block text-primary font-semibold cursor-pointer pr-1' onClick={ChangeEditable}>Edit</p>
                 </div>
+                <label className="text-sm block text-gray-700">User name</label>
                 <div className="relative flex items-center">
-                    <input name="name" type="text" value={values.name} onChange={handleChange} onBlur={handleBlur} disabled={editName}
+                    <input name="name" type="text" value={values.name} onChange={handleChange} onBlur={handleBlur} disabled={isEditable}
                         className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-primary" placeholder="Enter username" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4" viewBox="0 0 24 24">
                         <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
@@ -68,18 +64,15 @@ const UserForm = () => {
             </div>
 
             <div className="mt-4 relative">
-                <div className='flex justify-between'>
-                    <label className="text-sm block text-gray-600">Mobile number</label>
-                    <p className='text-sm block text-primary font-semibold  cursor-pointer' onClick={ChangeEditMobile}>Edit</p>
-                </div>
+                <label className="text-sm block text-gray-600">Mobile number</label>
                 <div className="relative flex items-center">
-                    <input name="mobile" type="number" value={values.mobile} onChange={handleChange} onBlur={handleBlur} disabled={editMobile}
+                    <input name="mobile" type="number" value={values.mobile} onChange={handleChange} onBlur={handleBlur} disabled={isEditable}
                         className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-primary" placeholder="Enter Mobile number" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 24 24">
                         <path d="M22 3H2a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM3 5h18v10H3V5zm0 12v-2h18v2H3z" />
                     </svg>
                 </div>
-                {(touched.mobile && errors.mobile) && <p className='text-2xs text-red-600 pl-1'>{errors.mobile}</p>}
+                {(touched.mobile && errors.mobile && !isEditable) && <p className='text-2xs text-red-600 pl-1'>{errors.mobile}</p>}
             </div>
 
 
