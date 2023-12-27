@@ -1,5 +1,5 @@
 import { User } from "../config/database.js"
-import { comparePassword } from "../services/authService.js";
+import { comparePassword, encryptPassword } from "../services/authService.js";
 import CustomError from "../utils/CustomError.js";
 
 export default {
@@ -66,8 +66,9 @@ export default {
             if (!user) {
                 throw new CustomError("User not found", 404);
             }
-            await user.update({ password: req.body.password })
-            return res.status(201).json({ message: "Password changed successfully" });
+            const hashedPassword = await encryptPassword(req.body.password)
+            await user.update({ password: hashedPassword })
+            return res.status(201).json({ message: "Password changed successfully", status: true });
         } catch (error) {
             console.error(error)
             next(error);

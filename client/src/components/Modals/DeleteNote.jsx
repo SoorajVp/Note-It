@@ -18,10 +18,16 @@ const DeleteNote = ({noteId}) => {
     };
 
     const handleDelete = async() => {
-        dispatch(setLoading(true))
-        await deleteNote(noteId)
-        dispatch(setRefetch())
-        closeModal()
+        try {
+            dispatch(setLoading(true))
+            await deleteNote(noteId)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            dispatch(setRefetch())
+            closeModal()
+        }
+        
     }
 
     return (

@@ -16,21 +16,19 @@ export const updateUserData = createAsyncThunk(
     }
 )
 
-export const changePassword = createAsyncThunk(
-    'users/changePassword', async (payload) => {
-        try {
-            const response = await axiosInstance.post('/user/changePassword', payload);
-            toast.success(response.data?.message)
-            return response?.data
-        } catch (error) {
-            console.error(error)
-            toast.error(error?.response?.data?.message)
-            throw error?.response?.data
-        }
+export const changePassword = async (payload) => {
+    try {
+        const response = await axiosInstance.post('/user/changePassword', payload);
+        toast.success(response.data?.message)
+        return response?.data
+    } catch (error) {
+        console.error(error)
+        toast.error(error?.response?.data?.message)
+        return error?.response?.data
     }
-)
+}
 
-export const checkPassword = async(payload) => {
+export const checkPassword = async (payload) => {
     try {
         const response = await axiosInstance.post('/user/checkPassword', payload)
         return response?.data

@@ -31,10 +31,10 @@ const UserProfile = () => {
                     </div>
                 </div>
 
-                <div className='mx-10 lg:pt-0 pt-8'>
+                <div className='mx-5 lg:mx-10 lg:pt-0 pt-8'>
                     {
                         changePassword ?
-                            <ChangePassword /> :
+                            <ChangePassword setChangePassword={setChangePassword} /> :
                             <UserForm />
                     }
                 </div>

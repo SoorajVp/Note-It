@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { submitLogin, submitRegister } from "../../services/apiCalls/auth";
-import { changePassword, updateUserData } from "../../services/apiCalls/user";
+import { updateUserData } from "../../services/apiCalls/user";
 
 const initialState = {
     actions: 0,
@@ -74,17 +74,6 @@ const userSlice = createSlice({
                 state.isLoading = false
             })
             .addCase(updateUserData.rejected, (state) => {
-                state.isLoading = false
-            })
-
-            // check password
-            .addCase(changePassword.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(changePassword.fulfilled, (state, action) => {
-                state.isLoading = false
-            })
-            .addCase(changePassword.rejected, (state) => {
                 state.isLoading = false
             })
 
