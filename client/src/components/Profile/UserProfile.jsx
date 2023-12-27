@@ -1,8 +1,15 @@
+import { useState } from 'react';
 import userIcon from '../../assets/user.png';
 import LogoutUser from '../Modals/LogoutUser';
 import UserForm from './UserForm';
+import ChangePassword from './ChangePassword';
 
 const UserProfile = () => {
+    const [changePassword, setChangePassword] = useState(false)
+
+    const handlePasswordChange = () => {
+        setChangePassword(!changePassword)
+    }
 
     return (
         <div>
@@ -15,13 +22,21 @@ const UserProfile = () => {
                         <div className='flex justify-center'>
                             <img src={userIcon} alt="User" className='w-10 lg:w-32 h-10 lg:h-32' />
                         </div>
-                        <p className='py-4 text-primary hover:text-secondary text-sm font-semibold'>Change password</p>
+                        {
+                            changePassword ?
+                                <p className='py-4 text-primary hover:text-secondary text-sm font-semibold cursor-pointer' onClick={handlePasswordChange}>User Informations</p> :
+                                <p className='py-4 text-primary hover:text-secondary text-sm font-semibold cursor-pointer' onClick={handlePasswordChange}>Change password</p>
+                        }
                         <LogoutUser />
                     </div>
                 </div>
 
                 <div className='mx-10 lg:pt-0 pt-8'>
-                    <UserForm />
+                    {
+                        changePassword ?
+                            <ChangePassword /> :
+                            <UserForm />
+                    }
                 </div>
             </div>
         </div>

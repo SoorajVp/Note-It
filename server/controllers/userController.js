@@ -1,4 +1,5 @@
 import { User } from "../config/database.js"
+import { comparePassword } from "../services/authService.js";
 import CustomError from "../utils/CustomError.js";
 
 export default {
@@ -28,13 +29,45 @@ export default {
             }
             
             const isMobileExist = await User.findOne({ where: { mobile: mobile } });
-            console.log("user by pk - - - -", user)
-            console.log("user by mobile - - - -", isMobileExist)
             if ( isMobileExist && isMobileExist?.mobile != user.mobile) {
                 throw new CustomError('Mobile is already registered', 400);
             }
             const updatedUser = await user.update({ name, mobile })
             return res.status(201).json({ message: "User updated successfully", data: updatedUser });
+        } catch (error) {
+            console.error(error)
+            next(error);
+        }
+    },
+
+    checkPassword: async(req, res, next) => {
+        try {
+            const password = req.body.password;
+            
+            const user = await User.findOne({ where: { id: req?.userId } });
+            if (!user) {
+                throw new CustomError('Invalid username or password', 400);
+            }
+
+            const checkPassword = await comparePassword(password, user.password)
+            if (!checkPassword) {
+                throw new CustomError('Wrong password ', 400);
+            }
+            return res.status(201).json({ message: "Perfect", status: true });
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    },
+
+    changePassword: async( req, res, next ) => {
+        try {
+            const user = await User.findByPk(req.userId)
+            if (!user) {
+                throw new CustomError("User not found", 404);
+            }
+            await user.update({ password: req.body.password })
+            return res.status(201).json({ message: "Password changed successfully" });
         } catch (error) {
             console.error(error)
             next(error);

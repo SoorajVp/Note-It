@@ -8,5 +8,7 @@ router.get('/', verifyUser, controller.getUserData)
 
 router.post('/update', verifyUser, controller.updateProfile)
 
+router.post('/checkPassword', verifyUser, controller.checkPassword)
+
 
 export default router;
