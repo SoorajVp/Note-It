@@ -10,7 +10,7 @@ const Layout = () => {
     return (
         <PrivateRoute >
             <Header />
-            <div className='pt-6 px-3 sm:px-[10%] bg-purple-200 min-h-screen'>
+            <div className='pt-6 px-3 sm:px-[10%] bg-gradient-to-b from-purple-100 to-purple-50 min-h-screen'>
                 { isLoading && <Loading /> }
                 <Outlet />
             </div>
