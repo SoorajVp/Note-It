@@ -7,6 +7,7 @@ import NotFound from '../components/Error/NotFound'
 import Layout from './Layout/Layout'
 import NotePage from '../pages/NotePage'
 import ProfilePage from '../pages/ProfilePage'
+import ForgotPassword from '../pages/ForgotPassword'
 
 const AppRouter = () => {
 
@@ -15,6 +16,7 @@ const AppRouter = () => {
       {/* Auth Routes */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path='/forgot-password' element={<ForgotPassword />} />
 
       <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />

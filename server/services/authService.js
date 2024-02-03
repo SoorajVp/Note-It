@@ -17,7 +17,6 @@ export const verifyToken = (token) => {
     }
 }
 
-
 // Password Services
 export const encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);

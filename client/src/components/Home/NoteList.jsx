@@ -23,7 +23,6 @@ const NoteList = () => {
                 dispatch(setLoading(false));
             }
         };
-
         fetchNotes();
     }, [actions])
 

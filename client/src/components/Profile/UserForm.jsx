@@ -28,8 +28,9 @@ const UserForm = () => {
         onSubmit: (values) => {
             dispatch(updateUserData(values))
             setEditable(true)
-            values.name = userData?.name
-            values.mobile = userData?.mobile
+            // values.name = userData?.name
+            // values.mobile = userData?.mobile
+            console.log(userData)
         }
     })
     

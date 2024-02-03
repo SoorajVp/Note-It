@@ -12,12 +12,14 @@ BYTEPAD is a robust note storage web application designed for users to seamlessl
 - Axios for handling API requests
 - Formik and Yup for form validations
 - JWT for authentication
+- Twilio service for mobile OTP verification
 - Designed and implemented an array of features for an optimal user experience
 
 ## Features
 
 - Registration with username, mobile number, and password
 - Login with secure JWT-based authentication
+- Forgot password with mobile OTP verification and reset password.
 - Note creation, editing, and deletion
 - User details update (username, mobile number)
 - Password change with verification of the old password
@@ -29,6 +31,6 @@ BYTEPAD is a robust note storage web application designed for users to seamlessl
     `cd client/`
     `cd server/`
 2. Install dependencies using `npm install` ( client and server side ).
-3. Configure environment variables on server side(e.g., database connection, port, jwt secret-key).
+3. Configure environment variables on server side(e.g., database connection, port, jwt secret-key, twilio credentials).
 4. Build the application using `npm run build`.
 5. Run the application using `npm run dev`.

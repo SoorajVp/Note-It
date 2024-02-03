@@ -2,7 +2,7 @@ import { useState } from 'react';
 import userIcon from '../../assets/user.png';
 import LogoutUser from '../Modals/LogoutUser';
 import UserForm from './UserForm';
-import ChangePassword from './ChangePassword';
+import ManagePassword from './ManagePassword';
 
 const UserProfile = () => {
     const [changePassword, setChangePassword] = useState(false)
@@ -34,7 +34,7 @@ const UserProfile = () => {
                 <div className='mx-5 lg:mx-10 lg:pt-0 pt-8'>
                     {
                         changePassword ?
-                            <ChangePassword setChangePassword={setChangePassword} /> :
+                            <ManagePassword setChangePassword={setChangePassword} /> :
                             <UserForm />
                     }
                 </div>

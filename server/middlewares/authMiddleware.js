@@ -5,7 +5,7 @@ export const verifyUser = async(req, res, next) => {
     try {
         const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
         if(!token) {
-            throw new CustomError("Unauthorized: No token provided", 401)
+            throw new CustomError("Unauthorized user found", 401)
         }
         const decode = verifyToken(token);
         req.userId = decode.userId
@@ -13,4 +13,4 @@ export const verifyUser = async(req, res, next) => {
     } catch (error) {
         next(error)
     }
-}
+}   

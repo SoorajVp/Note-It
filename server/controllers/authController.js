@@ -1,6 +1,13 @@
 import { User } from "../config/database.js";
 import { comparePassword, encryptPassword, generateToken } from "../services/authService.js";
+import { sendMobileOtp } from "../services/otpService.js";
 import CustomError from "../utils/CustomError.js";
+
+import twilio from 'twilio';
+const accountSid = "ACcb80f2213b81d28cdd1f8e188ccd0ef7";
+const authToken = "80c01a9e9397619e2269aa6fc1f7db9a";
+const verifySid = "VA4f8a2ab3d7c2df8e7027c75c6667472c";
+const client = twilio(accountSid, authToken);
 
 export default {
 
@@ -41,6 +48,20 @@ export default {
             }
             const token = generateToken(user?.id);
             res.json({ message: "Loggedin successfully", data: user, status: true, token })
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    sendOTPSMS: async (req, res, next) => {
+        try {
+            console.log('Sending OTP ', req.body.mobile)
+            const verification = await sendMobileOtp(req.body.mobile) 
+            console.log('Verification', verification)
+            if(!verification.status) {
+                throw new CustomError('Error while sending OTP', 400);
+            }
+            res.json({ message: "OTP send successfully", status: true })
         } catch (error) {
             next(error)
         }

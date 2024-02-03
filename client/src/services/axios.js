@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 // Add request interceptor
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('BytePadToken'); 
+        const token = localStorage.getItem('BytePadToken');
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -18,6 +18,5 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
 
 export default axiosInstance;
