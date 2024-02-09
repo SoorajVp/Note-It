@@ -1,13 +1,9 @@
 import { User } from "../config/database.js";
 import { comparePassword, encryptPassword, generateToken } from "../services/authService.js";
-import { sendMobileOtp } from "../services/otpService.js";
+import { sendOtpService, verifyOtpService } from "../services/otpService.js";
 import CustomError from "../utils/CustomError.js";
 
-import twilio from 'twilio';
-const accountSid = "ACcb80f2213b81d28cdd1f8e188ccd0ef7";
-const authToken = "80c01a9e9397619e2269aa6fc1f7db9a";
-const verifySid = "VA4f8a2ab3d7c2df8e7027c75c6667472c";
-const client = twilio(accountSid, authToken);
+
 
 export default {
 
@@ -53,10 +49,15 @@ export default {
         }
     },
 
-    sendOTPSMS: async (req, res, next) => {
+    sendMobileOtp: async (req, res, next) => {
         try {
             console.log('Sending OTP ', req.body.mobile)
-            const verification = await sendMobileOtp(req.body.mobile) 
+            const user = await User.findOne({ where: { mobile: req.body.mobile } });
+
+            if (!user) {
+                throw new CustomError('Mobile is not registered yet', 400);
+            }
+            const verification = await sendOtpService(req.body.mobile) 
             console.log('Verification', verification)
             if(!verification.status) {
                 throw new CustomError('Error while sending OTP', 400);
@@ -65,7 +66,20 @@ export default {
         } catch (error) {
             next(error)
         }
-    }
+    },
 
+    verifyMobileOtp: async (req, res, next) => {
+        try {
+            console.log(req.body)
+            const verification = await verifyOtpService(req.body.mobile, req.body.otp)
+            console.log('Verification', verification)
+            if (!verification.valid) {
+                throw new CustomError('Invalid OTP', 400);
+            }
+            res.json({ message: "OTP verified successfully", status: true })
+        } catch (error) {
+            next(error)
+        }
+    }
 
 }

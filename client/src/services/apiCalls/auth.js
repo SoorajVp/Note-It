@@ -36,11 +36,22 @@ export const submitRegister = createAsyncThunk(
 export const submitMobile = async( payload ) => {
     try {
         const response = await axiosInstance.post('/auth/send-otp', payload);
+        console.log(response)
         toast.success(response?.data?.message)
         return response.data;
     } catch (error) {
-        console.log(error?.response?.data);
         toast.error(error?.response?.data?.message);
         throw error?.response?.data;
     }
 }   
+
+export const verfyMobileOTP = async( payload ) => {
+    try {
+        const response = await axiosInstance.post('/auth/verify-otp', payload);
+        toast.success(response?.data?.message)
+        return response.data;
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+        throw error?.response?.data;
+    }
+}

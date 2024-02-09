@@ -16,4 +16,5 @@ router.post('/update/:id', verifyUser, controller.updateNote)
 router.delete('/delete/:id', verifyUser, controller.deleteNote)
 
 
+
 export default router;
