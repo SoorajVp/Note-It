@@ -28,6 +28,7 @@ BYTEPAD is a robust note storage web application designed for users to seamlessl
 ## Get Started
 
 1. Clone this repository. `git clone https://github.com/SoorajVp/BytePad.git`
+    ``` 
     `cd client/`
     `cd server/`
 2. Install dependencies using `npm install` ( client and server side ).
