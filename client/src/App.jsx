@@ -4,6 +4,23 @@ import { Toaster } from 'react-hot-toast'
 import AppRouter from './routes/AppRouter'
 import store from './state/store'
 
+
+export const quillModules = {
+  toolbar: [
+    [{ header: [1, 2, 3, 4, false] }],
+    // [{ font: [] }],
+    [{ size: [] }],
+
+    [
+      { list: "ordered" }, { list: "bullet" },
+      // { indent: "-1" }, { indent: "+1" },
+    ],
+    ["bold", "italic", "underline", "blockquote", "strike"],
+    ["link", "video"],
+
+  ]
+}
+
 function App() {
 
   return (

@@ -44,20 +44,26 @@ const SingleNote = () => {
                     <button className="secondary-button">Back</button>
                 </Link>
                 <div className="space-x-1">
-                    <button className="secondary-button" onClick={clearButton}>Clear</button>
-                    <button className="primary-button disabled:opacity-50 disabled:pointer-events-none" disabled={status} onClick={submitNote} >Save</button>
+                    {/* <button className="secondary-button" onClick={clearButton}>Clear</button> */}
+                    <button className="primary-button" onClick={() => navigate(`/note/edit/${id}`)} >Edit</button>
                 </div>
             </div>
-            <form className="mx-auto">
+            <div className='bg-gray-50 p-6 border rounded'>
+                <h2 className='text-2xl font-medium'>{head}</h2>
+                <div className='mt-2' dangerouslySetInnerHTML={{ __html: text}}>
+
+                </div>
+            </div>
+            {/* <form className="mx-auto">
                 <div className="">
                     <input type="text" onChange={(e) => setHead(e.target.value)} value={head} id="head" autoComplete='off'
-                        className="bg-gray-50 border-gray-300 text-gray-700 text-base rounded-t-md block w-full p-2.5 focus:outline-none" placeholder='Title' />
+                        className="bg-gray-50 border border-gray-300 text-gray-700 text-base rounded-t-md block w-full p-2.5 focus:outline-none" placeholder='Title' />
                 </div>
                 <div>
                     <textarea id="text" onChange={(e) => setText(e.target.value)} value={text} rows="24"
                         className="block p-2.5 w-full text-sm text-gray-700 bg-gray-50 rounded-b-md focus:outline-none" placeholder="Your notes..."></textarea>
                 </div>
-            </form>
+            </form> */}
         </div>
     )
 }

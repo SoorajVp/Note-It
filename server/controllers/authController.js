@@ -16,6 +16,7 @@ export default {
                 throw new CustomError('Username is already registered', 400);
             }
             const isMobileExist = await User.findOne({ where: { mobile: mobile } });
+            console.log("isMobileExist", isMobileExist);
             if (isMobileExist) {
                 throw new CustomError('Mobile is already registered', 400);
             }
@@ -34,11 +35,12 @@ export default {
         try {
             const { name, password } = req.body
             const user = await User.findOne({ where: { name } });
-
+            console.log("USer found :", user)
             if (!user) {
                 throw new CustomError('Invalid username or password', 400);
             }
             const checkPassword = await comparePassword(password, user?.password)
+            console.log("checkPassword :", checkPassword)
             if (!checkPassword) {
                 throw new CustomError('Invalid username or password', 400);
             }
@@ -57,9 +59,9 @@ export default {
             if (!user) {
                 throw new CustomError('Mobile is not registered yet', 400);
             }
-            const verification = await sendOtpService(req.body.mobile) 
+            const verification = await sendOtpService(req.body.mobile)
             console.log('Verification', verification)
-            if(!verification.status) {
+            if (!verification.status) {
                 throw new CustomError('Error while sending OTP', 400);
             }
             res.json({ message: "OTP send successfully", status: true })

@@ -7,6 +7,8 @@ const SendOTP = () => {
     const [mobile, setMobile] = useState('');
     const [otp, setOtp ] = useState('');
 
+    const [ changePassword, setChangePassword] = useState(false);
+
     const handleSendOTP = async() => {
         try {
             const response = await submitMobile({mobile});

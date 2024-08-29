@@ -3,7 +3,7 @@ import { format } from 'timeago.js'
 import DeleteNote from '../Modals/DeleteNote';
 
 const NoteCard = ({ id, head, text, updatedAt }) => {
-    const maxCharacters = 300;
+    const maxCharacters = 500;
 
     const truncateText = (text) => {
         return text.length > maxCharacters ? text.slice(0, maxCharacters) + '...' : text;
@@ -18,7 +18,7 @@ const NoteCard = ({ id, head, text, updatedAt }) => {
                             <DeleteNote noteId={id} />
                         </div>
                     </div>
-                    <p className='text-2xs sm:text-xs text-gray-600 overflow-hidden'>{truncateText(text)}</p>
+                <p className='text-2xs sm:text-xs text-gray-600 overflow-hidden' dangerouslySetInnerHTML={{ __html: truncateText(text) }}></p>
                 </div>
                 <p className='pt-1 text-right text-2xs text-gray-500'>{format(updatedAt)}</p>
 

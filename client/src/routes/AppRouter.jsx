@@ -8,6 +8,7 @@ import Layout from './Layout/Layout'
 import NotePage from '../pages/NotePage'
 import ProfilePage from '../pages/ProfilePage'
 import ForgotPassword from '../pages/ForgotPassword'
+import EditNote from '../components/Note/EditNote'
 
 const AppRouter = () => {
 
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route index element={<HomePage />} />
         <Route path='create' element={<CreatePage />} />
         <Route path='note/:id' element={<NotePage />} />
+        <Route path='note/edit/:id' element={<EditNote />} />
         <Route path='profile' element={<ProfilePage />} />
       </Route>
 

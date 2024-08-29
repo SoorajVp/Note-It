@@ -56,7 +56,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: #fff;
-    box-shadow: 0 4px 6px -1px #7848e8, 0 2px 3px -1px #5c33bd;
+    box-shadow: 0 4px 6px -1px #7146d3, 0 2px 3px -1px #764dd6;
     border-radius: 13px;
     transition-duration: 500ms;
     border: 1px solid #fff;
@@ -65,4 +65,22 @@
 
 .card:hover {
     border: 1px solid #5c33bd;
+}
+
+
+.editor-box {
+    /* background: #fff; */
+    height: 60vh;
+    width: 100%;
+}
+
+
+/* Unordered List (ul) */
+ul {
+    @apply list-disc list-inside pl-4;
+}
+
+/* Ordered List (ol) */
+ol {
+    @apply list-decimal list-inside pl-4;
 }

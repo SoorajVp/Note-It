@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom' 
+import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import PrivateRoute from './Private'
 import Header from '../../components/Header/Header'
@@ -8,13 +8,15 @@ const Layout = () => {
     const { isLoading } = useSelector((store) => store.user)
 
     return (
-        <PrivateRoute >
+        <>
+        {/* <PrivateRoute > */}
             <Header />
             <div className='pt-6 px-3 sm:px-[10%] bg-gradient-to-b from-purple-100 to-purple-50 min-h-screen'>
-                { isLoading && <Loading /> }
+                {isLoading && <Loading />}
                 <Outlet />
             </div>
-        </PrivateRoute>
+         {/* </PrivateRoute> */}
+        </>
     )
 }
 

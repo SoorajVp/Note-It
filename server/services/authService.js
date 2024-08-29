@@ -24,5 +24,7 @@ export const encryptPassword = async (password) => {
 }
 
 export const comparePassword = async (password, hashedPassword) => {
-    return await bcrypt.compare(password, hashedPassword)
+    const status = await bcrypt.compare(password, hashedPassword)
+    console.log("password comparing status : " , status)
+    return status
 }
