@@ -3,7 +3,7 @@ import { format } from 'timeago.js'
 import DeleteNote from '../Modals/DeleteNote';
 
 const NoteCard = ({ id, head, text, updatedAt }) => {
-    const maxCharacters = 500;
+    const maxCharacters = 300;
 
     const truncateText = (text) => {
         return text.length > maxCharacters ? text.slice(0, maxCharacters) + '...' : text;

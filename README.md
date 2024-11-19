@@ -23,15 +23,31 @@ BYTEPAD is a robust note storage web application designed for users to seamlessl
 - Note creation, editing, and deletion
 - User details update (username, mobile number)
 - Password change with verification of the old password
-- The backend and frontend technologies work seamlessly together, ensuring a smooth user experience and efficient data         management.
+- The backend and frontend technologies work seamlessly together, ensuring a smooth user experience and efficient data management.
 
 ## Get Started
 
-1. Clone this repository. `git clone https://github.com/SoorajVp/BytePad.git`
-    ``` 
-    `cd client/`
-    `cd server/`
+1. Clone this repository.
+
+   ```bash
+   git clone https://github.com/SoorajVp/BytePad.git
+   cd client/
+   cd server/
+   ```
 2. Install dependencies using `npm install` ( client and server side ).
+
 3. Configure environment variables on server side(e.g., database connection, port, jwt secret-key, twilio credentials).
-4. Build the application using `npm run build`.
-5. Run the application using `npm run dev`.
+   ```plaintext
+    SERVER_PORT = 4000
+    TOKEN_SECRET_KEY = ""
+
+    DB_NAME = ""
+    DB_USERNAME = ""
+    DB_PASSWORD = ""
+
+    TWILIO_ACCOUNT_SID = 
+    TWILIO_AUTH_TOKEN = 
+    TWILIO_VERIFY_SID = 
+    ```
+
+4. Run the application using `npm run dev`.

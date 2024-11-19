@@ -8,6 +8,7 @@ const PrivateRoute = ({ children }) => {
     const { isLoggedIn } = useSelector((store) => store.user)
 
     useEffect(() => {
+        console.log("logged in ,")
         !isLoggedIn && navigate('/login');
     }, [isLoggedIn, navigate]);
 

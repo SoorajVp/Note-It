@@ -19,6 +19,7 @@ const LogoutUser = () => {
     const handleLogout = () => {
         dispatch(setLogout());
         toast.success("Logged out successfully")
+        window.location.pathname = "/login"
         closeModal()
     }
 

@@ -50,7 +50,7 @@ const SingleNote = () => {
             </div>
             <div className='bg-gray-50 p-6 border rounded'>
                 <h2 className='text-2xl font-medium'>{head}</h2>
-                <div className='mt-2' dangerouslySetInnerHTML={{ __html: text}}>
+                <div className='mt-2 prose' dangerouslySetInnerHTML={{ __html: text}}>
 
                 </div>
             </div>

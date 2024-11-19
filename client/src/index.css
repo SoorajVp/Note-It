@@ -59,6 +59,8 @@
     box-shadow: 0 4px 6px -1px #7146d3, 0 2px 3px -1px #764dd6;
     border-radius: 13px;
     transition-duration: 500ms;
+    /* max-height: 250px; */
+    overflow: hidden;
     border: 1px solid #fff;
 }
 

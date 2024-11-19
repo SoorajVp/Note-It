@@ -5,6 +5,7 @@ export default {
 
     getUserNotes: async(req, res, next ) => {
         try {
+            console.log("notes---------------------------------------")
             const notes = await Note.findAll({ where: { userId: req.userId }, order: [['updatedAt', 'ASC']]});
             return res.status(201).json({ message: "Notes fetched successfully", data: notes });
         } catch (error) {

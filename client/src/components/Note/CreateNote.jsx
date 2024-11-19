@@ -18,10 +18,14 @@ const CreateNote = () => {
     const status = (head && text) ? false : true
 
     const submitNote = async () => {
-        dispatch(setLoading(true))
-        await createNewNote({ head, text })
-        dispatch(setLoading(false))
-        navigate('/')
+        try {
+            dispatch(setLoading(true));
+            await createNewNote({ head, text });
+            navigate("/");
+        } finally {
+            dispatch(setLoading(false));
+        }
+        
     }
 
     console.log("text", text)
